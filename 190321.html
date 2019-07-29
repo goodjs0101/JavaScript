@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    debugger;
+    <p id="my_id">우리나라 대한민국</p>
+    <script>
+    // 디버깅 debugger <== 출력하는 4가지 방식을 하나씩 실행시키는 작업
+       debugger;
+       console.log(1);
+    // innerHTML
+       debugger;
+       document.getElementById("my_id").innerHTML = 2;
+    // 함수를 넣는 경우
+        function showMessage() {
+            console.log("함수를 호출해서 출력되는 메세지")
+            showMessage2();
+        }
+        function showMessage2() {
+            console.log("함수를 호출해서 출력되는 메세지")
+        }
+        showMessage();
+    // alert()
+       debugger;
+       window.alert(3);
+    // console.log
+       debugger;
+       console.log(4);
+    // write()
+       debugger;
+       document.write(5);
+    </script>
+</body>
+</html>

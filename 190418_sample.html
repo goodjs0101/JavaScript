@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>계산기 만들기</title>
+    <style>
+        #calc_id ul { padding-left: 0; list-style: none; }
+        #calc_id li { display: inline-block; width: 30px; }
+        /* #showForm_id {  } */
+    </style>
+    <script>
+        // 초기화
+        var calcInit = function () {
+            console.log("계산기 초기화");
+            // 계산식을 초기화
+            calcEnv.getVals = [];
+            // 계산기 객체 생성
+            calcEnv.calcObj = document.getElementById('calc_id');
+            calcEnv.btns = findBtns(calcEnv.calcObj);
+            // 각 버튼에 이벤트 적용
+            for (var i=0; i<calcEnv.btns.length; i++) {
+                var btn = calcEnv.btns[i]; // 버튼 인스턴스를 반환한다.
+                btn.obj.addEventListener("click",  getInput.bind( null, i));
+            }
+        }
+
+        // 계산기 환경
+        var calcEnv = {
+            // calcObj는 onload시에 미리 생성한다.
+            getVals: []
+
+        }
+        // 계산기 프로토타입 - 사칙연산 계산을 담당
+        var CalcBtn = function(type, val, obj) {
+            this.type = type;
+            this.val = val;
+            this.obj = obj;
+        }
+        var Calc = function () {
+            // 지역변수로 선언
+            var add = function add(x, y){ return x + y; };
+            var miu = function miu(x, y){ return x - y; };
+            var mul = function mul(x, y){ return x * y; };
+            var div = function div(x, y){ return x / y; };
+
+            return { add: add };
+        }
+        // 버튼 요소 반환 - return: [CalcBtn인스텐스, ...]
+        var findBtns = function (obj) {
+            var els, el, btns, type, val, obj;
+            els = obj.getElementsByTagName('li');
+            // btns = [CalcBtn인스텐스, ...] 형식으로 저장
+            btns = [];
+            for (var i=0; i<els.length; i++) {
+                // num 버튼과 sign 버튼을 구분
+                el = els[i];
+                if(el.getAttribute('class').indexOf('num') > -1) {
+                    type = "num";
+                } else if(el.getAttribute('class').indexOf('sign') > -1) {
+                    type = "sign";
+                }
+                val = el.dataset.name;
+                obj = el;
+
+                var btnObj = new CalcBtn(type, val, obj);
+                // CalcBtn 인스턴스를 만들어 btns 배열에 저장
+                btns.push(btnObj);
+            }
+            return btns;
+        }
+
+        // 입력값 처리 - input: 요소, output: 문자
+        var getInput = function(idx) {
+            console.log("getInput() => ", calcEnv.btns[idx].val);
+        }
+        // 입력값 관리 - 저장, 수정, 삭제
+
+        // 유효성 검사
+
+        // 화면 출력
+
+    </script>
+</head>
+<body onload="calcInit()">
+    <p>사칙연산 계산기</p>
+    <div id="calc_id">
+        <div id="showForm_id"></div>
+        <ul>
+            <li class="btn sign" data-name="BS">BS</li>
+            <li class="btn sign" data-name="AC">AC</li>
+            <li class="btn sign" data-name="(">(</li>
+            <li class="btn sign" data-name=")">)</li>
+            <li class="btn num" data-name="7">7</li>
+            <li class="btn num" data-name="8">8</li>
+            <li class="btn num" data-name="9">9</li>
+            <li class="btn sign" data-name="/">/</li>
+            <li class="btn num" data-name="4">4</li>
+            <li class="btn num" data-name="5">5</li>
+            <li class="btn num" data-name="6">6</li>
+            <li class="btn sign" data-name="*">*</li>
+            <li class="btn num" data-name="1">1</li>
+            <li class="btn num" data-name="2">2</li>
+            <li class="btn num" data-name="3">3</li>
+            <li class="btn sign" data-name="-">-</li>
+            <li class="btn num" data-name="0">0</li>
+            <li class="btn sign" data-name="=">=</li>
+            <li class="btn sign" data-name="+">+</li>
+        </ul>
+    </div>
+</body>
+</html>

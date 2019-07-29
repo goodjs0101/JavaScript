@@ -1,0 +1,103 @@
+	
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>계산기</title>
+    <style>
+        div {
+            background: blue;
+            width: 270px;
+            height: 450px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        input {
+            height: 50px;
+            width: 230px;
+            font-size: 27px;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            margin: 15px 5px;
+        }
+        button:nth-child(19) {
+            width: 110px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cal">
+        <input type="text" id="calculation" maxlength="15">
+        <button onclick="backSpace()"><-</button>
+        <button onclick="clearNum()">C</button>
+        <button class="num" value="(">(</button>
+        <button class="num" value=")">)</button>
+        <button class="num" value="7">7</button>
+        <button class="num" value="8">8</button>
+        <button class="num" value="9">9</button>
+        <button class="sum" value="/">/</button>
+        <button class="num" value="4">4</button>
+        <button class="num" value="5">5</button>
+        <button class="num" value="6">6</button>
+        <button class="sum" value="*">*</button>
+        <button class="num" value="1">1</button>
+        <button class="num" value="2">2</button>
+        <button class="num" value="3">3</button>
+        <button class="sum" value="-">-</button>
+        <button class="num" value="0">0</button>
+        <button onclick="sum()">=</button>
+        <button class="sum" value="+">+</button>
+    </div>
+    <script>
+        var cal = document.getElementById("calculation").value;
+        var arr = [""];
+        var nums = document.querySelectorAll('#cal .num');
+        var sums = document.querySelectorAll('#cal .sum');
+        [].forEach.call(nums,function(num){
+            num.addEventListener("click",btnNum);
+        });
+        [].forEach.call(sums,function(sum){
+            sum.addEventListener("click",figure);
+        });
+        //버튼값 입력필드에 추가
+        function btnNum() {
+            if (arr[1] == true) {
+                document.getElementById("calculation").value = "";
+                arr[1] = false;
+            }
+            document.getElementById("calculation").value += event.target.value;
+        }
+        //클리어버튼
+        function clearNum() {
+            document.getElementById("calculation").value = "";
+            arr[0] = "";
+        }
+        //수식기호 버튼 처리
+        function figure() {
+            arr[0] += document.getElementById("calculation").value;
+            arr[0] += event.target.value;
+            return document.getElementById("calculation").value = "";
+        }
+        //연산 버튼 처리
+        function sum() {
+            arr[0] += document.getElementById("calculation").value;
+            arr[0] = eval(arr[0]);
+            //예외처리
+            if (arr[0] == NaN) {
+                return document.getElementById("calculation").value = "수식 입력이 잘못 되었습니다.";
+            }
+            txt = document.getElementById("calculation").value
+            document.getElementById("calculation").value = arr[0];
+            arr[0] = "";
+            return arr[1] = true;
+        }
+
+        //백스페이스버튼 처리
+        function backSpace() {
+            document.getElementById("calculation").value = document.getElementById("calculation").value.slice(0,-1);
+        }
+    </script>
+</body>
+</html>

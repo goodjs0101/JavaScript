@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2> Variable Scope - Local Variables </h2>
+<input type="submit" onclick="localVar()" value="LOCAL VARIABLE" />
+<div id="div1"> </div>
+<div id="div2"> </div>
+<script>
+    var localVar = function() {
+        var color = "Blue";
+        function printColor() {
+            //로컬 변수
+            var color = "Purple";
+            //this statement print Purple
+            document.getElementById("div1").innerHTML = color;
+        }
+        printColor();
+        //Purple 칼라는 printColor() 함수가 완료되고
+        document.getElementById("div2").innerHTML = color;
+    };
+</script> 
+<button onclick="this.innerHTML = Date()">The time is?</button>
+</body>
+</html>

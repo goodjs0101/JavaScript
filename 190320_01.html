@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>함수 function의 이해</title>
+</head>
+<body>
+    <id="my_id">      
+    <b id="i_a">입력값1</b>
+    <b id="i_b">입력값2</b>
+    <p>두 개의 값을 비교해서 콘솔창에 보여드립니다.</p>
+    입력값1
+    <button onclick="setVal('a',0)">0</button>
+    <button onclick="setVal('a',1)">1</button>
+    <button onclick="setVal('a',2)">2</button>
+    <button onclick="setVal('a',3)">3</button>
+    <button onclick="setVal('a',4)">4</button>
+    <button onclick="setVal('a',5)">5</button>
+    <button onclick="setVal('a',6)">6</button>
+    <button onclick="setVal('a',7)">7</button>
+    <button onclick="setVal('a',8)">8</button>
+    <button onclick="setVal('a',9)">9</button>
+    <br>
+    입력값2
+    <button onclick="setVal('b',0)">0</button>
+    <button onclick="setVal('b',1)">1</button>
+    <button onclick="setVal('b',2)">2</button>
+    <button onclick="setVal('b',3)">3</button>
+    <button onclick="setVal('b',4)">4</button>
+    <button onclick="setVal('b',5)">5</button>
+    <button onclick="setVal('b',6)">6</button>
+    <button onclick="setVal('b',7)">7</button>
+    <button onclick="setVal('b',8)">8</button>
+    <button onclick="setVal('b',9)">9</button>
+    <button onclick="compare()">결과확인</button>
+    <script>
+    debugger;    
+    var result, a, b;
+    function setVal(pv, pn) {
+        debugger;
+        if(pv === "a") {
+            a = pn;
+            document.getElementById("i_a").innerHTML = pn;
+        }else if(pv === "b") { 
+            b = pn;
+            document.getElementById("i_b").innerHTML = pn;
+        }else{
+            window.alert("입력된 값이 잘 못 되었습니다.");
+        }
+    }
+    function compare() {
+        p1 = a;
+        p2 = b;
+        // p1, p2는 매개변수
+        // var r = (p1 > p2)? "크다":"작다";
+        if (p1 > p2) {
+            //조건문은 조건이 참인 경우에 코드블럭이 실행
+            result = p1+"가(이)"+p2+"보다 큽니다.";
+        } else if (p1 < p2) {
+            result = p2+"가(이)"+p1+"보다 큽니다.";
+        } else {
+            result = p1+"과(와)"+p2+"는 같습니다.";
+        }
+        //return result;
+        window.alert(result);
+    }
+    </script>
+</body>
+</html>

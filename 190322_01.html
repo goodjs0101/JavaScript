@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    button {
+        font-size: 4em;
+        width: 60px;
+    }
+    .wx2 {
+        width: 126px;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <title>일반계산기</title>
+</head>
+<body>
+    <h1>일반계산기</h1>
+    <p>이 계산기는 한 자리 숫자의 사칙연산만 지원합니다.</p>
+    <h3><span id="input_1">_</span>와(과) <span id="input_2">_</span>의 <span id="input_4">_</span> 은(는) <span id="input_3">_</span>입니다.</h3>
+    <div>
+    <button onclick="setNum(7)">7</button>
+    <button onclick="setNum(8)">8</button>
+    <button onclick="setNum(9)">9</button>
+    <button onclick="calc('/')">/</button>
+    <br>
+    <button onclick="setNum(4)">4</button>
+    <button onclick="setNum(5)">5</button>
+    <button onclick="setNum(6)">6</button>
+    <button onclick="calc('*')">*</button>
+    <br>
+    <button onclick="setNum(1)">1</button>
+    <button onclick="setNum(2)">2</button>
+    <button onclick="setNum(3)">3</button>
+    <button onclick="calc('-')">-</button>
+    </div>
+    <button class="wx2" onclick="setNum(0)">0</button>
+    <button onclick="myClear()">C</button> 
+    <button onclick="calc('+')">+</button>
+    <script>
+        var numOrder = 1;
+        var a;
+        var b;
+        function setNum (n1) {
+            if (numOrder === 1){
+            document.getElementById('input_1').innerHTML = n1;
+            a = n1;
+            }   else {
+            document.getElementById('input_2').innerHTML = n1;
+            b = n1;
+            }
+            numOrder = numOrder * -1;
+        }
+        function calc(p1) {   
+            if(p1 === "+"){
+                 // 더하기
+                 console.log("더하기 버튼 클릭");
+            document.getElementById('input_3').innerHTML = a+b ;         
+            document.getElementById('input_4').innerHTML = "합" ;         
+             } else if(p1 === "-") {
+                  // 빼기
+                console.log("빼기 버튼 클릭");
+                document.getElementById('input_3').innerHTML = a-b ;
+                document.getElementById('input_4').innerHTML = "차" ;
+            } else if(p1 === "*") {
+                 // 곱하기
+                 console.log("곱하기 버튼 클릭");
+                document.getElementById('input_3').innerHTML = a*b ;
+                document.getElementById('input_4').innerHTML = "곱" ;
+            } if(p1 === "/") {
+                 // 나누기
+                 console.log("나누기 버튼 클릭");
+                document.getElementById('input_3').innerHTML = a/b ;
+                document.getElementById('input_4').innerHTML = "나누기" ;
+            }
+        }
+        function myClear() {
+            numOrder = 1;
+            a = undefined;
+            b = undefined;
+            document.getElementById('input_1').innerHTML = "_" ;
+            document.getElementById('input_2').innerHTML = "_" ;
+            document.getElementById('input_3').innerHTML = "_" ;
+            document.getElementById('input_4').innerHTML = "_" ;
+            window.alert("초기화 되었습니다.")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xml을 json으로</title>
+</head>
+<body>
+    <script>
+        /* xml을 josn으로 바꾸기
+         * xml과 json을 사용하여 웹 서버에서 데이터를 수신
+         * var jsObj = { name:"John", age:31 }; //person
+         * var json = '{ "name":"John", "age":31}'; //형식
+         * htmlcollection 타입을 사용할 수 있다!
+         * var xml = '<person><name>Jhon</name><age>31</age></html>';
+         * var html = "<html><body><ul><li>John</li><li>31</li></ul></body></html>"
+         */
+
+        var env = {};
+        var getXml = function () {
+            var xhp = new XMLHttpRequest();
+            xhp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("xml 데이터를 가져왔습니다. ");
+                    // console.log(this.response);
+                    // console.log(this.responseTEXT);
+                    // console.log(this.responseXML);
+                    env.songXml = this.responseXML;
+                    env.songDOC = this.responseXML.getElementsByTagName("SONG");
+                    window.alert("파일이 준비되었습니다.")
+                }
+            }
+            xhp.open("POST", "ginieTop10.xml", true);
+            xhp.send();
+        }
+        //
+        var makeJson = function() {
+            // var myFson = '{"s1":{"n":"홍"}, "s2":{"n":"최"}}'
+            var myJson = '';
+            var song = env.songDOC[0];
+            var ranking = song.getElementsByTagName("RANKING")[0].childNodes[0].nodeValue;
+            myJson += '{';
+            myJson +=  '"song'+1+'"';
+            myFson += ':';
+            myJson += '{';
+            myFson += '"RANKING"';
+            myFson += ':';
+            myFson += '"'+RANKING+'"';
+            myFson += '}';
+            myFson += '}';
+            console.log(myJson);
+            return JSON.parse(myJson);
+        }
+        //
+        window.onload = function () {
+            getXml();
+            // env.songTable = document.getElementById("songs_id");
+            // document.getElementById("songTable_id").addEventListener("click", function(){detailView(event);});
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>나의 지니 10곡</title>
+</head>
+<body>
+    <h1>나의 베스트 10</h1>
+    <button type="button" id="prev">이전곡</button>
+    <button type="button" id="next">다음곡</button>
+    <button type="button" id="rand">무작위</button>
+    <table id="my10song">
+        <!-- <tr><td>작은...</td></tr> -->
+    </table>
+    <script>
+        window.onload = function () {
+            init();
+        };
+        function init() {
+            // xml 데이터를 가져온다.
+            loadDoc();
+            document.getElementById('prev').addEventListener('click', previous);
+            document.getElementById('next').addEventListener('click', next);
+            document.getElementById('rand').addEventListener('click', loadDoc);
+        }
+        var env = { // 객체는 전역에 사용가능한것들을
+            myXml : {},
+            sNo : 0
+        }
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    env.myXml = this.responseXML.getElementsByTagName('SONG');
+                    env.sLen = env.myXml.length;
+                    env.sNo = rand();
+                    console.log(env.myXml);
+                    myFunction();
+                }
+            }
+            xhttp.open("GET", "ginieTop10.xml", true);
+            xhttp.send();
+        }
+        function myFunction() {
+            var songs = env.myXml;
+            var songNo = env.sNo;
+            console.log("들어있는 곳은 총 ", songs.length, "곡");
+            //console.log(songs[0].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue);
+            var el = document.getElementById("my10song");
+            var htm = "";
+            htm += "<tr>";
+            htm += "<td>";
+            var rank = songs[songNo].getElementsByTagName('RANKING')[0].childNodes[0].nodeValue;
+            switch (rank-1) {
+                case 0:
+                    htm += "처음"; 
+                    break;
+                case env.sLen-1 :
+                    htm += "마지막";
+                    break;
+                default:
+                    htm += rank + "위";
+                    break;
+            }
+            htm += "</td>";
+            htm += "<td>";
+            htm += songs[songNo].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue;
+            htm += "</td>";
+            htm += "<td>";
+            htm += songs[songNo].getElementsByTagName('SINGER')[0].childNodes[0].nodeValue;
+            htm += "</td>";
+            htm += "<td>";
+            htm += songs[songNo].getElementsByTagName('ALBUM')[0].childNodes[0].nodeValue;
+            htm += "</td>";
+            htm += "</tr>";
+            el.innerHTML = htm;
+        }
+        function next() {
+            // display the next CD, unless you are on the last CD
+            var x = env.myXml;
+            if (env.sNo < x.length - 1) {
+                env.sNo++;
+                myFunction();
+            } else if (env.sNo == x.length-1) {
+                env.sNo = 0;
+                myFunction();
+            }
+        }
+        function previous() {
+            // display the previous CD, unless you are on the first CD
+            var x = env.myXml;
+            if (env.sNo > 0) {
+                env.sNo--;
+                myFunction();
+            } else if (env.sNo == 0) {
+                env.sNo = x.length-1;
+                myFunction();
+            }
+        }
+        function rand() {
+            // 총 몇개의 곡이 있나? env.sLen
+            // 0부터 env.sLen-1 의 수를 반환하는 랜덤함수 - Math.random()
+            return Math.floor(Math.random() * env.sLen);
+        }
+    </script>
+</body>
+</html>

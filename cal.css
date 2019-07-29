@@ -1,0 +1,25 @@
+.wrap {
+    width: 970px;
+    margin: auto;
+}
+table {
+    margin: auto;
+    margin-top: 80px;
+}
+table, tr, td {
+    padding: 5px;
+    border: 1px solid #000;
+}
+td {
+    width: 30px;
+    text-align: center;
+    padding: 10px;
+}
+input {
+    text-align: right;
+    border: none;
+    padding: 0;
+}
+input:focus {
+    outline: none;
+}

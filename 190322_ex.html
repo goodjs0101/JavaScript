@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div>
+        입력1: <span id="input_1"></span> | 
+        입력2: <span id="input_2"></span>
+    </div>
+    <div>
+        <!-- <button onclick="setNum('input_1','a');">1번에 a입력</button>
+        <button onclick="setNum('input_2','b');">2번에 b입력</button> -->
+        <button onclick="setNum(1);">1</button>
+        <button onclick="setNum(2);">2</button>
+        <button onclick="setNum(3);">3</button>
+        <button onclick="setNum(4);">4</button>
+        <button onclick="setNum(5);">5</button>
+        <button onclick="setNum(6);">6</button>
+        <button onclick="setNum(7);">7</button>
+        <button onclick="setNum(8);">8</button>
+        <button onclick="setNum(9);">9</button>
+    </div>
+    
+    <script>
+        var input_order = 1;
+        function setNum(n1) {
+            if(input_order === 1) {
+                document.getElementById("input_1").innerHTML = n1;
+            } else {
+                document.getElementById("input_2").innerHTML = n1;
+            }
+            input_order = input_order * -1;
+        }
+        // document.getElementById("input_1").innerHTML = "a";
+        //setNum(p1,p2);
+        //setNum("input_1","a");
+        // document.getElementById("input_2").innerHTML = "b";
+        //setNum("input_2","b");
+
+    </script>
+</body>
+</html>

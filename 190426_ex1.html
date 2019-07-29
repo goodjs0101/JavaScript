@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX</title>
+</head>
+<body>
+<div id="demo">
+    <h2>The XMLHttpRequest Object</h2>
+    <button type="button" onclick="loadDoc('190426_1.php', myFn)">Change Content</button>
+    <button type="button" onclick="loadDoc('190426_2.php', myFn)">Change Content</button>
+</div>
+    
+<script>
+function loadDoc(url,fn) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            fn(this);
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+function myFn(obj) {
+    document.getElementById("demo").innerHTML = obj.responseText;
+}
+</script>
+</body>
+</html>

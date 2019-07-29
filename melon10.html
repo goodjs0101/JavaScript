@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>나의 멜론 10곡</title>
+</head>
+<body>
+    <button type="button" onclick="loadDoc()">나의 멜론 10곡</button>
+    <table id="my10song">
+        <!-- <tr><td>작은...</td></tr> -->
+    </table>
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunction(this);
+                }
+            };
+            xhttp.open("GET", "melon10.xml", true);
+            xhttp.send();
+        }
+        function myFunction(obj) {
+            var x = obj.responseXML; // x에는 xml이 들어가 있음.
+            var songs = x.getElementsByTagName('SONG');
+            console.log("들어있는 곡은 총",songs.length,"곡");
+            console.log(songs[0].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue);
+            var el = document.getElementById("my10song");
+            var htm = "";
+            htm += "<tr>"
+            htm += "<td>"
+            htm += songs[0].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue;
+            htm += "</td>"
+            htm += "<tr>"
+            el.innerHTML = htm;
+        }
+    </script>
+</body>
+</html>

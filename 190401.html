@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mylist"></div>
+    <script>
+        // var member = [["대한", "전주", "2018-11-05"],["민국", "부산", "2019-01-08"]];
+        var member = [{name:"대한", addr:"전주", reg_date:"2018-11-05"},{name:"민국", addr:"부산", reg_date:"2019-01-08"}];
+        // 날짜를 숫자로
+        function dateToNum (strDate) {
+            var dt = new Date(strdate);
+            return dt.getTime();
+        }
+        // 날짜 비교
+        function compDate (o1, o2) {
+            var numD1 = dateToNum(o1.reg_date);
+            var numD2 = dateToNum(o2.reg_date);
+            return numD1 - numD2;
+
+        }
+
+
+        // member를 입사일 순으로 정렬
+        member.sort(compDate);
+
+        // obj 형식이 고정
+        function objTostring(obj) {
+            var txt = "";
+            txt += "이름: " + obj.name;
+            txt += ", 주소: " + obj.addr;
+            txt += ", 입사일: " + obj.reg_date;
+            return txt;
+        }
+        var txt = "";
+        txt += "<ul>";
+        for (var i = 0; i<member.length; i++) {
+            txt += "<li>";
+            txt += objTostring();
+            txt += "</li>"
+        };
+        txt += "</ul>";
+        document.getElementById("mylist").innerHTML = txt;
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JOSNTOXML</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var env = {};
+        var getXml = function () {
+            var xhp = new XMLHttpRequest();
+            xhp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    env.songHC = this.responseXML.getElementsByTagName("SONG");
+                }
+            }
+            xhp.open("GET", "ginieTop10.xml", false);
+            xhp.send();
+        }
+        var myJSON = '{"CHART":{"SONG":[{"TITLE":"작은 것들을 위한 시", "SINGER":"방탄소년단", "ALBUM":"MAP OF THE PERSONA"}]}}';
+        var myObj = JSON.parse(myJSON);
+        document.getElementById("demo").innerHTML = myObj.CHART.SONG[0].TITLE;
+    </script>
+</body>
+</html>

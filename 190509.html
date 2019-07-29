@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            position: relative;
+            max-width: 100%;
+            border: 2px solid black;
+            max-height: 100%;
+            display: block;
+            margin: 0 auto;
+            background: #000;
+        }
+    </style>
+</head>
+
+<body onload="startGame()">
+    <script>
+    
+    var myGamePiece;
+    var enemys;
+    
+    function startGame() {
+        myGameArea.start();
+        myGamePiece = new component(30, 30, "#fff", 450, 480);
+        enemys = new component(30, 30, "green", 340, 30);
+        enemys = new component(30, 30, "green", 380, 30);
+        enemys = new component(30, 30, "green", 420, 30);
+        enemys = new component(30, 30, "green", 460, 30);
+        enemys = new component(30, 30, "green", 500, 30);
+    }
+    
+    var myGameArea = {
+        canvas : document.createElement("canvas"),
+        start : function() {
+            this.canvas.width = 960;
+            this.canvas.height = 540;
+            this.context = this.canvas.getContext("2d");
+            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        }
+    }
+    
+    function component(width, height, color, x, y) {
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;    
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    
+    </script>
+</body>
+
+</html>

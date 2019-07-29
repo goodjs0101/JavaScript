@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="id1" type="number" min="100">
+    <button onclick="myFunction()">OK</button>
+    
+    <p id="demo"></p>
+    
+    <script>
+    function myFunction() {
+        if (document.getElementById("id1").validity.rangeUnderflow) {
+        alert("입력값이 작습니다.");
+        } else {
+        alert("확인");
+        } 
+        document.getElementById("demo").innerHTML = txt;
+    }
+    </script>
+</body>
+</html>

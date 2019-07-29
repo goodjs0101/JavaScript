@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.alert("안녕하세요");
+    </script>
+</head>
+<body>
+   <script>
+   document.write("초밥");
+   </script>
+   <script>
+        var now=new Date();
+        var year=now.getYear()+1900;
+        var month=now.getMonth()+1;
+        var day=now.getDay();
+        var date=now.getDate();
+        
+        switch(day)
+        {
+        case 0: day="일요일"
+         break;
+        case 1: day="월요일"
+         breadk;
+        case 2: day="화요일"
+         break;
+        case 3: day="수요일"
+         break;
+        case 4: day="목요일"
+         break;
+        case 5: day="금요일"
+         break;
+        case 6: day="토요일"
+         break;
+        }
+        
+        document.write("<b> <font size=+5> Date를 이용한 날짜 정보 출력하기 </b> </font> <p> <hr>");
+        document.write("<font size=+2><p>오늘의 날짜: "+year+"년 "+month+"월 "+date+"일 "+day+"</font>");
+        
+        var hour=now.getHours();
+        var minute=now.getMinutes();
+        var second=now.getSeconds();
+        
+        
+        document.write("<p>현재 시간: "+hour+"시 "+minute+"분 "+second+"초" )
+    </script> 
+</body>
+</html>

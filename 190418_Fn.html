@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo">한글</p>
+    <p id="demo2">한국</p>
+<script>
+    function myFn(param) { // param 생략가능
+        var str1 = myFn2(param);
+        var str2 = myFn3(param);
+        return str1 + str2; // 생략 가능
+    }
+    var myFn2 = function(param) { // param 생략가능
+        return param + param; // 생략 가능
+    }
+    var myFn3 = function(param) { // param 생략가능
+        return param + param + param; // 생략 가능
+    }    
+    var myFn3 = myFn;
+    document.getElementById('demo').innerHTML = myFn("demo");
+    document.getElementById('demo2').innerHTML = myFn("demo2");
+</script>
+</body>
+</html>

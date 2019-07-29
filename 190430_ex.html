@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>지니 Top 10</title>
+</head>
+<body>
+    <h1>지니 Top 10 List</h1>
+    <table id="songList"></table>
+    <p id='showSONG'></p>
+
+    <script>
+        var x, xmlhttp, xmlDoc;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "ginieTop10.xml", false);
+        xmlhttp.send();
+        xmlDoc = xmlhttp.responseXML;
+        x = xmlDoc.getElementsByTagName("SONG");
+        table = "<tr><th>Ranking</th><th>Singer</th><th>Title</th></tr>";
+        for (i = 0; i < x.length; i++) {
+            table += "<tr onclick='displaySONG(" + i + ")'><td>";
+            table += x[i].getElementsByTagName("RANKING")[0].childNodes[0].nodeValue;
+            table += "</td><td>";
+            table += x[i].getElementsByTagName("SINGER")[0].childNodes[0].nodeValue;
+            table += "</td><td>";
+            table += x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+            table += "</td></tr>";
+        }
+        document.getElementById("songList").innerHTML = table;
+        function displaySONG(i) {
+            document.getElementById("showSONG").innerHTML =
+                "Ranking: " +
+                x[i].getElementsByTagName("RANKING")[0].childNodes[0].nodeValue +
+                "<br>Singer: " +
+                x[i].getElementsByTagName("SINGER")[0].childNodes[0].nodeValue +
+                "<br>Title: " +
+                x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                "<br>Album: " +
+                x[i].getElementsByTagName("ALBUM")[0].childNodes[0].nodeValue;
+        }
+    </script>
+</body>
+</html>

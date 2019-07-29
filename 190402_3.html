@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var d = new Date().getDay();
+        if (d == 4 || d == 5) {
+            document.getElementById("demo").innerHTML = "Soon it is Weekend";
+        } else if (d == 0 || d == 6) {
+            document.getElementById("demo").innerHTML = "It is Weekend";
+        } else {
+            document.getElementById("demo").innerHTML = "Looking forward to the Weekend";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>랜덤 추첨기</title>
+</head>
+    <p>문자열 abcde가 있는데 인덱스 3번을 뽑고 나머지를 다시 문자열로 만드는 작업을 진행해 본다.</p>
+    <p id="osrt">abcde</p>
+    <p id="ext">_</p>
+<script>
+    var oriSrt = document.getElementById('osrt').innerHTML;
+    //document.getElementById('osrt').innerHTML = "edg";
+    var extIndex = 3;
+    function srtSplice(param1, param2) {
+        // 입력 받은 문자열에서 특정 인덱스를 제거하고
+        // 추출된 문자를 반환
+        // param1은 원문자열 - abcde
+        // param2는 인덱스값 - 3
+        var part1 = param1.slice(0,param2-1);
+        var part2 = param1.slice(-1)
+    }
+    srtSplice(oriSrt, extIndex);   
+</script>
+</body>
+</html>

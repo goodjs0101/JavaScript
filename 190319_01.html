@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1+5=10 계산기 만들기</title>
+</head>
+<body>
+    <p>
+        1+5=10과 같이 두개의 값을 받아 결과를 화면에 출력하도록 구현하고자 함.<br>
+        a.변수는 x, y, ,r 3개를 사용한다.<br>
+        b.변수(x, y, r)에 값을 대입하는 방법 => console을 통해 입력<br>
+        c.결과를 화면에 보여주는 방법<br>
+        d.결과를 화인하기 위해 이벤트(click)를 처리하는 방법
+    </p>
+    <p>
+        처리과정은 a -> b -> c -> d
+        <h1 id="rest"></h1>
+        <h1 id="rest2"></h1>
+        <h1 id="rest3"></h1>
+        <h1 id="rest4"></h1>
+        <button onclick="document.getElementById('rest').innerHTML = x + y">+결과보기</button>
+        <button onclick="document.getElementById('rest2').innerHTML = x - y">-결과보기</button>
+        <button onclick="document.getElementById('rest3').innerHTML = x * y">*결과보기</button>
+        <button onclick="document.getElementById('rest4').innerHTML = x / y">/결과보기</button>
+    </p>
+    <script>
+    var x, y, r;
+    /*
+    var x;
+    var y;
+    var r;
+    */
+    x = 123456789;
+    y = 987654321;
+    </script>
+</body>
+</html>

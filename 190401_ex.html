@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>야구 순위</title>
+</head>
+<body>
+    <div id="rank"></div>
+    <script>
+        var baseBall= [{name:"두산", win:6, loss:2, draw:0, rate:".750"}, 
+        {name:"SK", win:6, loss:2, draw:0, rate:".750"}, 
+        {name:"LG", win:5, loss:3, draw:0, rate:".625"}, 
+        {name:"NC", win:5, loss:3, draw:0, rate:".625"}, 
+        {name:"한화", win:4, loss:4, draw:0, rate:".500"}];
+        function compareTeam (team1, team2) {
+            var kboTeam1 = winTeam(team1);
+            var kboTeam2 = winTeam(team2);
+            return kboTeam1 - kboTeam2;
+        }
+        function winTeam(param) {
+            var firstTeam = team.sort(param.win);   
+        }
+        var teamOrg = baseBall.slice();
+        var firstTeam = baseBall.sort(compareTeam);
+        function teamTowinner(param) {
+            var ret = '팀명: <strong>' + param.name + '</strong>, W: <strong>' + param.win +
+             '</strong>, L: <strong>' + param.loss + '</strong>, 무: <strong>' + param.draw + 
+             '</strong>, 승률: <strong>' + param.rate;
+            return ret;
+        }
+        function showPage() {
+            var txt = "";
+            txt += "<tr>";
+            for (var i=0; i<teamOrg.length; i++) {
+                txt += "<td>";
+                txt += teamTowinner(teamOrg[i]);
+                if (teamOrg[i].name === firstTeam[0].name) {
+                }
+                txt += "</td>";
+            }
+            txt += "</tr>"
+            document.getElementById("rank").innerHTML = baseBall;
+        }
+        showPage();
+    </script>
+</body>
+</html>

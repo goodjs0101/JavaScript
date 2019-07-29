@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p_id"></p>
+    <input type = "text" value = "getTime" id = "input_id">
+    <button onclick = "dayToNum()">확인</button>
+    <script>
+        function dayToNum() {
+            // 값을 가져와서 화면에 적용한다.
+            var d = document.getElementById("input_id").value;
+            var dt = new Date().getTime();
+            document.getElementById("p_id").innerHTML = dt;
+        }
+        // 1. 함수가 호출되는지 확인한다.
+    </script>
+</body>
+</html>

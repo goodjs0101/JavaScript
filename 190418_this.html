@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var 회사원1 = {이름:"홍길동", 나이:22, 주소:"전주시", 함수:function(){this.이름}};
+        var 회사원2 = {이름:"이순신", 나이:23, 주소:"전주시", 함수:function(){this.이름}};
+        var 회사원3 = {이름:"박나라", 나이:23, 함수:function(){this.이름}};
+
+        var Member = function(name, age, addr) {
+            this.이름 = name; 
+            this.나이 = age; 
+            this.주소 = addr;
+            this.함수 = function() {this.이름}; 
+        }
+
+        var 회사원4 = new Member("이송이",22,"부산시");
+    </script>
+</body>
+</html>

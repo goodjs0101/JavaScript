@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>나의 지니 10곡</title>
+</head>
+<body onload="loadDoc(i)">
+    <p>지니 TOP 10 보기</p>
+    <table id="my10song"></table>
+    <input type="button" onclick="previous()" value="<<">
+    <input type="button" onclick="next()" value=">>">
+
+    <script>
+        var countA = 0;
+        var countB = 0;
+        var i = 0;
+        var xhttp = new XMLHttpRequest();
+        function loadDoc(i) {
+            countA++;
+            xhttp.onreadystatechange = function() {
+                console.log("readyState => ,status => ",this.readyState, this.status);
+                if(this.readyState == 4 && this.status == 200) {
+                   myFunction(i);
+                   console.log("처음 실행")
+                }
+            }
+            console.log("open()");
+            xhttp.open("GET", "genie10.xml", true);
+            console.log("send()");  
+            xhttp.send();
+        }
+
+        function myFunction(pa) {
+            countB++;
+            var x = xhttp.responseXML; // x는 xml이 들어가 있음.
+            var songs = x.getElementsByTagName('SONG');
+            var el = document.getElementById("my10song");
+            var htm ="";
+            htm += "<tr>" + "<td>";
+            htm += songs[pa].getElementsByTagName("RANKING")[0].childNodes[0].nodeValue + "위 <br>";
+            htm += "노래 : " + songs[pa].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue + "<br>";
+            htm += "가수 : " + songs[pa].getElementsByTagName("SINGER")[0].childNodes[0].nodeValue + "<br>";
+            htm += "엘범 : " + songs[pa].getElementsByTagName("ALBUM")[0].childNodes[0].nodeValue;
+            htm += "</td>" + "</tr>";
+            el.innerHTML = htm;
+        }
+
+        function next() {
+            if(i < 9) {
+                i++;
+                myFunction(i);
+            }
+        }
+
+        function previous() {
+            if( i > 0) {
+                i--;
+                myFunction(i);
+            }
+        }
+    </script>
+</body>
+</html>

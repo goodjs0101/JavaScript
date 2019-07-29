@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form 사용하기</title>
+    <style>
+        input {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <form name="myForm" action="http://kinme.dothome.co.kr/html/190412_2.php" method="POST" onsubmit="return validateForm()">
+        회원아이디<input type="text" name="memberId" value="">
+        <button type="button" onclick="checkId()">확인</button><br>
+        비밀번호<input type="password" name="memberPW">
+        <button type="button" onclick="checkPW()">확인</button><br>
+        생년월일<input type="text" name="year" id="birt" size="4">년
+        <input type="text" name="month" size="2">월
+        <input type="text" name="day" size="2">일
+        <button type="button" onclick="checkBirth()">확인</button><br>
+        연락처<input type="tel" name="tel1" size="3" title="연락처 앞번호">-
+        <input type="tel" name="tel2" size="3" title="연락처 중간번호"> -
+        <input type="tel" name="tel3" size="3" title="연락처 뒷번호">
+        <button type="button" onclick="checkTel()">확인</button><br>
+        <button type="submit">제출</button>
+    </form>
+    <script>
+        // ID 확인
+        function checkId() {
+            var x = document.forms["myForm"]["memberId"].value;
+            if ((x.trim()).length == 0) {
+                alert("ID를 입력해 주세요");
+            } else if ((x.trim()).length < 3) {
+                alert("ID가 너무 짧습니다");        
+            } else if ((x.trim()).length > 15) {
+                alert("ID가 너무 깁니다.");
+            } else {
+                alert("사용 가능한 ID입니다.");
+            }
+        }
+        // 비밀번호 확인
+        function checkPW() {
+            var x = document.forms["myForm"]["memberPW"].value;
+            if ((x.trim()).length == 0) {
+                alert("비밀번호를 입력해 주세요.");
+            } else if ((x.trim()).length < 8) {
+                alert("비밀번호가 너무 짧습니다.");
+            } else if ((x.trim()).length > 16) {
+                alert("비밀번호가 너무 깁니다.");
+            } else {
+                alert("사용 가능한 비밀번호입니다.");
+            }
+        }
+        // 생년월일 확인
+        function checkBirth() {
+            var x = document.forms["myForm"]["year"].value;
+            if ( (x.trim()).length < 4 || (x.trim()).length > 4 || (1930 > x || 2019 < x) ) {
+                alert("생년월일을 확인해 주세요");
+                return false;
+            }
+            var y = document.forms["myForm"]["month"].value;
+            if ( (y.trim()).length < 2 || (y.trim()).length < 2 || y > 12 ) {
+                alert("생년월일을 확인해 주세요");
+                return false;
+            }
+            var z = document.forms["myForm"]["day"].value;
+            if ( (z.trim()).length < 2 || (z.trim()).length > 2 || z > 31 ) {
+                alert("생년월일을 확인해 주세요");
+            } else {
+                alert("가입 가능한 생년월일 입니다.");
+            }
+                return false;
+            }
+        // 전화번호 확인
+        function checkTel() {
+            var x = document.forms["myForm"]["tel1"].value;
+            if ( (x.trim()).length < 2 || (x.trim()).length > 3 ) {
+                alert("전화번호를 확인해 주세요");
+                return false;
+            }
+            var y = document.forms["myForm"]["tel2"].value;
+            if ( (y.trim()).length < 3 || (y.trim()).length > 4 ) {
+                alert("전화번호를 확인해 주세요");
+                return false;
+            }
+            var z = document.forms["myForm"]["tel3"].value;
+            if ( (z.trim()).length < 4 || (z.trim()).length > 4 ) {
+                alert("전화번호를 확인해 주세요");
+                return false;
+            }  else {
+                alert("사용 가능한 전화번호입니다.");
+            }
+        }
+        function validateForm() {
+           if (checkId() == true) {
+                checkId();
+           }
+           if (checkPW() == true) {
+               checkPW();
+           }
+           if (checkBirth() == true) {
+               checkBirth();
+           }
+           if (checkTel() == true) {
+               checkTel();
+           }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="init()">
+        <script>
+            var init = function () {
+                var newDiv = document.createElement('Div');
+                newDiv.setAttribute('id','demo');
+                document.body.appendChild(newDiv);
+
+                env.stage = document.getElementById('demo');
+                // 구구단을 생성
+                strat();
+            }
+            var env = {
+                // stage가 생성된다.
+            }
+            function strat() {
+                var txt = "";
+                for(var i=2; i<10; i++) {
+                    txt += i+"단<br>";
+                    txt += subFn();
+                    if(i<9) {
+                        txt += "===<br>";
+                    }
+                }
+                env.stage.innerHTML = txt;
+            }
+            function subFn(param) {
+                var txt = "";
+                for(var j=1; j<10; j++) {
+                    // 2 x 1 = 1
+                    var temp = param + " x " + j + " = " + param * j + "<br>";
+                    txt += temp; 
+                }
+                return txt;
+            }
+    </script>
+</body>
+</html>

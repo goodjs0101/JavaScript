@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+table{
+    border: 3px double black;
+    border-radius: 15px;
+    padding: 10px;
+    background: #5ABEFF;
+}
+button{
+    border: 1px inset;
+    border-radius: 5px;
+    background: #FFB4FF;
+}
+#op1, #op2{
+    border: 1px solid;
+    border-radius: 5px;
+}

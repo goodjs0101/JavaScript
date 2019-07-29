@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>전화번호 유효성 검사하기</title>
+</head>
+<body>
+    <header>
+        <h1>전화번호 유효성 검사하기</h1>
+    </header>
+    <section>
+        전화번호: <input type="text" id="phone_id"><button type="button" onclick="showList()">입력</button>
+        <ul id="phone_list">
+            <li>입력된 전화번호가 없습니다.</li>
+        </ul>
+    </section>
+    <footer>
+        <p>2019-04-09 작성</p>
+    </footer>
+    <script>
+        var pArr = [];
+        function getPhoneNum() {
+            var pNum;
+            // input의 번호는 가져와 리턴한다.
+            pNum = document.getElementById('phone_id').value;
+            // '-'를 제거
+            pNum = pNum.replace(/\D/g,'');
+            return pNum;
+        }
+        // 유효성검사1
+        function dupPhoneNum(param) {
+            // param이 이미 있으면 true 없으면 false <= 문제가 있으면 true
+            var bool = false;
+            for(var item in pArr) {
+                if(pArr[item] == param) bool = true;
+            }
+            return bool;
+        }
+        // 유효성검사2
+        function valiPhoneNum(param) {
+            var pNumLength, kNumArr, kNum, kNumNotIn, bool = false;
+            
+            // true | false <= 문제가 있으면 true
+            // 길이를 확인
+            pNumLength= param.toString().length;
+            if (!(pNumLength > 8 && pNumLength < 12)) {
+                alert("전화번호 길이가 부족합니다.")
+                bool = true; 
+            }
+            // 국번을 확인
+            kNumArr = ["02", "031", "063", "010", "017"];
+            switch (pNumLength){
+                case 11:
+                    // 031, 063 등
+                    kNum = param.substr(0,3);
+                    kNumNotIn = true;
+                    for(var i=1;i<kNumArr.length;i++) {
+                        // 일치하면 통과
+                        if(kNum == kNumArr[i]) {
+                            kNumNotIn = false;
+                        }
+                    }
+                    // false이면 국번이 틀리다는 오류를 내보낸다.
+                    if(kNumNotIn) {
+                        alert("지역번호를 확인해 주세요.");
+                        bool = true;
+                    };
+                    break;
+                case 10:
+                case 9:
+                    // 02인 경우
+                    kNum = param.substr(0,2);
+                    kNumNotIn = true;
+                    if(kNum == kNumArr[0]) {
+                        kNumNotIn = false;
+                    }
+                    // false이면 국번이 틀리다는 오류를 내보낸다.
+                    if(kNumNotIn) {
+                        alert("지역번호를 확인해 주세요.");
+                        bool = true;
+                    }
+                    break;
+                default:
+                    //
+                    break;
+            }
+                
+            return bool;
+        }
+        // 모든 작업을 관리
+        function showList() {
+            var pNum = getPhoneNum();
+            // 중복검사
+            if (dupPhoneNum(pNum)) {
+                alert("이미 있는 번호입니다.");
+                return;
+            }
+            if (valiPhoneNum(pNum)) {
+                // alert("전화번호를 잘 못 입력하였습니다.");
+                return;
+            }
+            pArr.push(pNum);// <======== 모든 유효성 검사를 통과해야 push
+
+            // 화면에 목록을 보여준다.
+            var myList = "";
+            for(var item in pArr) {
+                myList += "<li>";
+                myList += pArr[item];
+                myList += "</li>";
+            }
+            document.getElementById('phone_list').innerHTML = myList;
+        }
+    </script>
+</body>
+</html>

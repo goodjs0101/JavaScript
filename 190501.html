@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>내가 좋아하는 노래</title>
+    <style>
+        #songTable_id tbody td {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 노래 목록을 보여주는 공간 -->
+    <table id="songTable_id">
+        <thead>
+            <tr>
+                <th>순위</th>
+                <th>노래</th>
+                <th>가수</th>
+            </tr>
+        </thead>
+        <tbody id="songs_id">
+        </tbody>
+    </table>
+    <div id="detail_id">
+        <!-- <h1><span>1위</span>작은 것들을 위한 시</h1>
+        <ul>
+            <li>가수: 방탄 소년단</li>
+            <li>앨범: MAP OF THE SOUL</li>
+            <li>좋아요: 123123</li>
+        </ul> -->
+    </div>
+    <script>
+        // 환경변수를 관리하기 위한 객체를 만든다.
+        var env = {};
+
+        // 곡 데이터(xml)를 가져오기
+        var getXml = function() {
+            var xhp = new XMLHttpRequest();
+            xhp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    // console.log("xml 데이터를 가져왔습니다.");
+                    // env.songXml = this.responseXML;
+                    env.songHC = this.responseXML.getElementsByTagName("SONG");
+                    listView();
+                }
+            }
+            xhp.open("POST","ginieTop10.xml", true);
+            xhp.send();    
+        }
+
+        // 곡을 화면에 표시하기
+        var listView = function() {
+            console.log("xml 목록을 화면에 보여준다.");
+            var txt = "", len = env.songHC.length;
+            // 반복을 시작
+            for (var i=0; i<len; i++) {
+                var song = env.songHC[i];
+                txt += "<tr id=song"+i+">";
+                txt += "<td>"+song.getElementsByTagName("RANKING")[0].childNodes[0].nodeValue;+"</td>";
+                txt += "<td>"+song.getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;+"</td>";
+                txt += "<td>"+song.getElementsByTagName("SINGER")[0].childNodes[0].nodeValue;+"</td>";
+                txt += "</tr>";
+            }
+            // 반복이 끝나는 지점
+            env.songTable.innerHTML = txt;
+        }
+
+        // 상세보기
+        var detailView = function(e) {
+            console.log("상세보기 성공", e.target.parentNode);
+            var el = e.target.parentNode;
+            var no = Number(el.id.slice(4)) // "song124" => "124" => 124
+            var song = env.songHC[no];
+            // RANKING, TITLE, SINGER, ALBUM, LIKE
+            var txt="";
+            txt += "<h1><span>"+song.getElementsByTagName("RANKING")[0].childNodes[0].nodeValue+"위</span>. "+song.getElementsByTagName("TITLE")[0].childNodes[0].nodeValue+"</h1>";
+            txt += "<ul>";
+            txt += "   <li>가수:"+song.getElementsByTagName("SINGER")[0].childNodes[0].nodeValue;+"</li>";
+            txt += "    <li>앨범:"+song.getElementsByTagName("ALBUM")[0].childNodes[0].nodeValue;+"</li>";
+            txt += "</ul>";
+            var detail = document.getElementById("detail_id");
+            detail.innerHTML = txt;
+        }
+
+        //
+        window.onload = function () {
+            getXml();
+            env.songTable = document.getElementById("songs_id");
+            document.getElementById("songTable_id").addEventListener("click", function(){detailView(event);});
+        }
+    </script>
+</body>
+</html>

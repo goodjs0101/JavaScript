@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 400px;
+        }
+        th, td {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+    var cars = ["Saab","Volvo","BMW"];
+    var txt;
+    txt = "<table>";
+        txt = txt + "<thead>";
+        txt = txt + "<tr>";
+        txt = txt + "<th>순번</th><th>브랜드</th>";
+        txt = txt + "</tr>";
+        txt = txt + "</thead>";
+        txt = txt + "<tbody>";
+        txt = txt + "<tr>";
+            for (var i=0; i<cars.length; i++) {
+                txt = txt + "<td>";
+                txt = txt + "<ol>";
+                txt = txt + '<li>' + cars[i] + '</li>';
+                txt = txt + "</ol>";
+                txt = txt + "</td>";
+            }
+        txt = txt + "</tr>";
+        txt = txt + "</tbody>";
+    txt = txt + "</table>";
+    document.getElementById("demo").innerHTML = txt;
+     </script>
+</body>
+</html>

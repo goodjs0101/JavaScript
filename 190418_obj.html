@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="newDiv.js"></script>
+</head>
+<body>
+    <script>
+        // 5단 객체, 36단 객체
+        var Gugudan = function (param) {
+            this.dan = param;
+            this.toString = function () {
+                var txt = "";
+                for(var j=1; j<10; j++) {
+                    // 2 x 1 = 1
+                    var temp = this.dan + " x " + j + " = " + this.dan * j + "<br>";
+                    txt += temp; 
+                }
+                return txt;
+            }
+        };
+
+        var dan5 = new Gugudan(5);
+        dan5.toString(); // 문자열을 출력
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var posX = 0, posY = 0, dis = 350; 
+    var dir = [[1,0],[0,1],[-1,0],[0,-1]];
+    for (var i=0; i<dir.length; i++) {
+        // 가로이동 dir[i][0], 세로이동[i][1]
+        // console.log(dir[i][0],dir[i][1]);
+        for(var j=0; j<dis; j++) {
+            posX += dir[i][0];
+            posY += dir[0][j];
+            console.log(posX," ", posY);
+        }
+    }
+    </script>
+</body>
+</html>

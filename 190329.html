@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="myFunction()">정렬</button>
+    <p id="demo"></p>
+    <script>
+        var workers = [
+            {Name:"대한", Add:"전주", reg:"2018", month:"11", day:"05"},
+            {Name:"민국", Add:"부산", reg:"2019", month:"01", day:"08"},
+            {Name:"수정", Add:"전주", reg:"1999", month:"04", day:"21"}];   
+            displayworkers(); 
+            function myFunction() {
+                workers.sort(function(a, b){return a.reg - b.reg});
+                displayworkers();
+            }    
+            function displayworkers() {
+                document.getElementById("demo").innerHTML =
+                workers[0].Name + " " + workers[0].Add + " " + workers[0].reg + "년" + workers[0].month + "월" + workers[0].day + "일" + "<br/>" +
+                workers[1].Name + " " + workers[1].Add + " " + workers[1].reg + "년" + workers[1].month + "월" + workers[1].day + "일" + "<br/>" +
+                workers[2].Name + " " + workers[2].Add + " " + workers[2].reg + "년" + workers[2].month + "월" + workers[2].day + "일";
+            }
+    </script>
+</body>
+</html>

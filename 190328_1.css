@@ -1,0 +1,16 @@
+.myTable,
+.myTable ul {
+    padding-left: 0;
+}
+ul ul li {
+    display: inline-block;
+    width: 32px;
+    height: 21px;
+    padding: 1px;
+}
+.first {
+    font-weight: bold;
+}
+ul ul li:last-child {
+    width: 48px;
+}
